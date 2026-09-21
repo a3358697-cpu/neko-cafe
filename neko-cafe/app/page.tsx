@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowUpRight, Cat, Check, Coffee, HeartPulse, MapPin, MessageCircle, Sparkles, Utensils, X } from 'lucide-react'
+import { ArrowUpRight, Cat, Check, Coffee, ConciergeBell, MapPin, MessageCircle, PawPrint, Sparkles, Stethoscope, Utensils, X } from 'lucide-react'
 
 const cats = [
   ['01', '冬近月', '撒嬌黏人', '喜歡靠在身邊，用呼嚕交換摸摸。'],
@@ -54,8 +54,8 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="intro section" id="about"><div className="section-label">01 / INSIDE THE HOUSE</div><div className="intro-grid"><div><h2>每一個角落，<br /><em>都有一種相遇。</em></h2></div><div className="intro-copy"><p>我們把店內分成四個區域，讓每種性格的貓咪，都有舒服自在的舞台。</p><a href="#rooms" className="text-link">探索店內空間 <ArrowUpRight size={14} /></a></div></div>
-        <div className="room-grid" id="rooms"><article className="room-card room-counter"><span className="room-number">01</span><div className="room-icon"><Cat size={22} /></div><h3>櫃台</h3><p>報到、入場與今日菜單，從這裡開始你的貓咪邂逅。</p><small>同時也是購買貓咪互動道具與周邊商品的地方，有任何疑問都可以先來這裡詢問</small></article><article className="room-card room-play"><span className="room-number">02</span><div className="room-icon"><Sparkles size={22} /></div><h3>玩樂區</h3><p>活潑貓咪的聚集地。互動感強烈，撲、抓、追逐都可能發生。</p><small>進入前請確認能接受被抓咬的風險，店員會在旁看顧但不完全介入。</small></article><article className="room-card room-tea"><span className="room-number">03</span><div className="room-icon"><Coffee size={22} /></div><h3>喝茶區</h3><p>性格溫和、不會主動攻擊的貓咪所在。安靜喝茶、聊天，或單純被療癒。</p><small>這裡的貓咪多半只會蹭人討摸，幾乎不會出現咬抓行為。</small></article><article className="room-card room-med"><span className="room-number">04</span><div className="room-icon"><HeartPulse size={22} /></div><h3>醫護站</h3><p>為客人處理貓咪互動造成的傷口，也是街貓族結紮絕育的作業區。</p><small>此區主要為靜態照護性質，不開放一般玩樂互動。</small></article></div>
+      <section className="intro section" id="about"><div className="section-label">01 / INSIDE THE HOUSE</div><div className="intro-grid"><div><h2>每一個角落，<br /><em>都有一種相遇。</em></h2></div><div className="intro-copy"><p>我們把店內分成四個區域，讓每種性格的貓咪，都有舒服自在的舞台。</p></div></div>
+        <div className="room-grid" id="rooms"><article className="room-card room-counter"><span className="room-number">01</span><div className="room-icon"><ConciergeBell size={22} /></div><h3>櫃台</h3><p>報到、入場與今日菜單，從這裡開始你的貓咪邂逅。</p><small>想加購道具或周邊，也是來這裡找我們就對了。</small></article><article className="room-card room-play"><span className="room-number">02</span><div className="room-icon"><PawPrint size={22} /></div><h3>玩樂區</h3><p>活潑貓咪的聚集地。互動感強烈，撲、抓、追逐都可能發生。</p><small>這裡玩得比較野，踏進來前先做好被撲一下的心理準備喔。</small></article><article className="room-card room-tea"><span className="room-number">03</span><div className="room-icon"><Coffee size={22} /></div><h3>喝茶區</h3><p>性格溫和、不會主動攻擊的貓咪所在。安靜喝茶、聊天，或單純被療癒。</p><small>放心坐下吧，這裡的貓咪只想蹭蹭你、討摸摸。</small></article><article className="room-card room-med"><span className="room-number">04</span><div className="room-icon"><Stethoscope size={22} /></div><h3>醫護站</h3><p>為客人處理貓咪互動造成的傷口，也是街貓族結紮絕育的作業區。</p><small>這裡需要安靜恢復，謝謝你放輕腳步。</small></article></div>
       </section>
 
       <section className="cats-section section" id="cats"><div className="section-heading"><div><div className="section-label">02 / THE CATS</div><h2>今天，誰會坐在<br /><em>你的身邊？</em></h2></div><p>店內共有 12 隻貓咪。<br />沒有指名服務，一切交給命運與貓咪心情。</p></div><div className="tag-intro"><div className="tag-intro-heading"><span className="tag-intro-badge">標籤介紹</span><span>用性格，找到今晚適合你的相遇。</span></div><div className="tag-intro-grid"><div><strong>撒嬌黏人</strong><p>喜歡窩在你手邊，摸久了會發出呼嚕聲，多待在喝茶區。</p></div><div><strong>傲嬌</strong><p>嘴上嫌你煩，尾巴卻誠實地繞著你的手，偶爾會輕輕咬一口。</p></div><div><strong>高冷</strong><p>不太主動，但願意讓你靜靜坐在旁邊，是需要耐心的類型。</p></div><div><strong>貪吃</strong><p>看到貓條就衝過來，是最容易被貓用品吸引的類型。</p></div><div><strong>搗蛋</strong><p>偶爾會抓一下、咬一下純屬玩鬧，多待在玩樂區，互動最有隨機感。</p></div></div></div><div className="tag-filter" aria-label="依性格篩選貓咪"><span className="tag-filter-title">篩選貓咪</span>{personalityTags.map((tag) => <button type="button" className={activeTag === tag ? 'active' : ''} onClick={() => setActiveTag(tag)} key={tag}>{tag}</button>)}</div><div className="cat-grid">{visibleCats.map(([number, name, personality, desc]) => <button type="button" className="cat-card" key={number} onClick={() => setSelectedCat([number, name, personality, desc])}><img src="/cat-wintermoon.png" alt={`${name}的照片`} className="cat-photo" /><div><span className={`tag tag-${personality === '搗蛋' ? 'play' : personality === '貪吃' ? 'food' : personality === '高冷' || personality === '傲嬌' ? 'cool' : 'cling'}`}>{personality}</span><h3>{name}</h3><p>{desc}</p></div></button>)}</div></section>
@@ -69,4 +69,3 @@ export default function Page() {
     </main>
   )
 }
-
