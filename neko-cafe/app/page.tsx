@@ -5,17 +5,17 @@ import { ArrowUpRight, Cat, Check, Coffee, ConciergeBell, MessageCircle, PawPrin
 
 const cats = [
   ['01', '冬近月', '撒嬌黏人', '喜歡靠在身邊，用呼嚕交換摸摸。'],
-  ['02', '小月', '撒嬌黏人', '會主動湊近觀察每一位新客人。'],
-  ['03', '墨丸', '搗蛋', '小心你的袖口，牠可能已經盯上了。'],
-  ['04', '茶茶', '高冷', '適合一起度過安靜午後的可靠夥伴。'],
-  ['05', '灰燼', '高冷', '是否營業，取決於牠今天想不想睜眼。'],
-  ['06', '露露', '撒嬌黏人', '請放慢腳步，讓牠自己決定距離。'],
-  ['07', '疾風', '搗蛋', '撲、抓、追逐，都是牠的打招呼方式。'],
-  ['08', '金幣', '貪吃', '聽到小魚乾就會從店裡任何角落現身。'],
-  ['09', '霜星', '傲嬌', '表面不在意，其實默默記住了你。'],
-  ['10', '棉花', '撒嬌黏人', '溫暖的體溫與緩慢的呼嚕是招牌。'],
-  ['11', '跳跳', '搗蛋', '最擅長把陌生客人變成同伴。'],
-  ['12', '夜巡', '高冷', '安靜地守在角落，等待有緣的客人。'],
+  ['02', '敬請期待', '撒嬌黏人', '詳細介紹即將公開，敬請期待。'],
+  ['03', '敬請期待', '搗蛋', '詳細介紹即將公開，敬請期待。'],
+  ['04', '敬請期待', '高冷', '詳細介紹即將公開，敬請期待。'],
+  ['05', '敬請期待', '高冷', '詳細介紹即將公開，敬請期待。'],
+  ['06', '敬請期待', '撒嬌黏人', '詳細介紹即將公開，敬請期待。'],
+  ['07', '敬請期待', '搗蛋', '詳細介紹即將公開，敬請期待。'],
+  ['08', '敬請期待', '貪吃', '詳細介紹即將公開，敬請期待。'],
+  ['09', '敬請期待', '傲嬌', '詳細介紹即將公開，敬請期待。'],
+  ['10', '敬請期待', '撒嬌黏人', '詳細介紹即將公開，敬請期待。'],
+  ['11', '敬請期待', '搗蛋', '詳細介紹即將公開，敬請期待。'],
+  ['12', '敬請期待', '高冷', '詳細介紹即將公開，敬請期待。'],
 ]
 
 const menuGroups = [
@@ -67,9 +67,9 @@ export default function Page() {
 
       <section className="cats-section section" id="cats"><div className="section-heading"><div><div className="section-label">02 / THE CATS</div><h2>今天，誰會坐在<br /><em>你的身邊？</em></h2></div><p>店內共有 12 隻貓咪。<br />沒有指名服務，一切交給命運與貓咪心情。</p></div><div className="tag-intro"><div className="tag-intro-heading"><span className="tag-intro-badge">標籤介紹</span><p>點選性格，篩選今晚可能坐在你身邊的貓咪。</p></div><div className="tag-intro-grid" role="group" aria-label="依性格篩選貓咪">{personalityDetails.map(([tag, desc]) => <button type="button" className={`tag-option${tag === '全部' ? ' tag-option-all' : ''}${activeTag === tag ? ' active' : ''}`} onClick={() => setActiveTag(tag)} key={tag}><strong>{tag}</strong><p>{desc}</p></button>)}</div></div><div className="cat-grid">{visibleCats.map(([number, name, personality, desc]) => <button type="button" className="cat-card" key={number} onClick={() => setSelectedCat([number, name, personality, desc])}><img src="/cat-wintermoon.png" alt={`${name}的照片`} className="cat-photo" /><div><span className={`tag tag-${personality === '搗蛋' ? 'play' : personality === '貪吃' ? 'food' : personality === '高冷' || personality === '傲嬌' ? 'cool' : 'cling'}`}>{personality}</span><h3>{name}</h3><p>{desc}</p></div></button>)}</div></section>
 
-      <section className="menu-section section" id="menu"><div className="menu-header"><div className="section-label light-label">03 / TODAY'S OFFERINGS</div><h2>菜單與<br /><em>消費項目</em></h2><p>所有價格以 RP 貨幣計算，所有服務項目請至櫃台詢問與購買。內容與供應狀況以現場公告為準。</p></div><div className="menu-list">{menuGroups.map(({ title, icon: Icon, items }) => <div className="menu-group" key={title}><div className="menu-group-title"><div className="menu-icon"><Icon size={19} /></div><h3>{title}</h3></div>{items.map(([itemTitle, desc, price]) => <div className="menu-item" key={itemTitle}><div className="menu-name"><h3>{itemTitle}</h3>{desc && <p>{desc.split('｜').map((line, index) => <span className={index === 1 ? 'menu-note' : ''} key={line}>{line}</span>)}</p>}</div><strong>{price}</strong></div>)}</div>)}</div></section>
+      <section className="menu-section section" id="menu"><div className="menu-header"><div className="section-label light-label">03 / TODAY'S OFFERINGS</div><h2>菜單與<br /><em>消費項目</em></h2><p>所有服務項目請至櫃台詢問與購買。內容與供應狀況以現場公告為準。</p><div className="menu-lowspend"><ConciergeBell size={18} /> 低消：每人至少點取一份「本日套餐」</div></div><div className="menu-list">{menuGroups.map(({ title, icon: Icon, items }) => <div className="menu-group" key={title}><div className="menu-group-title"><div className="menu-icon"><Icon size={19} /></div><h3>{title}</h3></div>{items.map(([itemTitle, desc, price]) => <div className="menu-item" key={itemTitle}><div className="menu-name"><h3>{itemTitle}</h3>{desc && <p>{desc.split('｜').map((line, index) => <span className={index === 1 ? 'menu-note' : ''} key={line}>{line}</span>)}</p>}</div><strong>{price}</strong></div>)}</div>)}</div></section>
 
-      <section className="rules section"><div className="rules-copy"><div className="section-label">04 / CAT BEHAVIOR & RULES</div><h2>先讀懂貓咪，<br /><em>再開始相處。</em></h2><p>每隻貓咪都有自己的情緒與界線。請先了解可能發生的互動，再享受今晚的相遇。</p></div><div className="rules-panels"><div className="rules-panel rules-behavior"><h3>貓咪可能觸發的行為</h3><div className="rules-list"><div><Check size={17} /><span>玩樂區的貓咪偶爾會上演「這是狩獵訓練」的戲碼，撲上來、輕咬一口都算合格演出。</span></div><div><Check size={17} /><span>喝茶區的貓咪擅長蹭功，坐下不到三秒可能就被牠們認養（暫時的）。</span></div><div><Check size={17} /><span>點了貓咪交響樂時，附近的貓咪可能會忍不住跟著合唱，純屬社交禮儀。</span></div><div><Check size={17} /><span>醫護站的貓咪比較文靜，第一次見面可能會先觀察你三秒才決定要不要理你。</span></div></div></div><div className="rules-panel rules-notice"><h3>客人需遵守事項</h3><div className="rules-list"><div><Check size={17} /><span>未取得同意前請勿進行過度肢體接觸或強制 RP（Godmod）。</span></div><div><Check size={17} /><span>IC（角色內）與 OOC（角色外）請盡量分開標示，避免混淆。</span></div><div><Check size={17} /><span>尊重其他客人的 RP 步調與節奏，請勿隨意打斷正在進行的互動。</span></div><div><Check size={17} /><span>截圖或直播前，請先確認在場的客人是否同意入鏡。</span></div><div><Check size={17} /><span>貴重物品請自行保管，如有任何需求歡迎隨時告知店員。</span></div></div></div></div></section>
+      <section className="rules section"><div className="rules-copy"><div className="section-label">04 / CAT BEHAVIOR & RULES</div><h2>先讀懂貓咪，<br /><em>再開始相處。</em></h2><p>每隻貓咪都有自己的情緒與界線。請先了解可能發生的互動，再享受今晚的相遇。</p></div><div className="rules-panels"><div className="rules-panel rules-behavior"><h3>貓咪可能觸發的行為</h3><div className="rules-list"><div><Check size={17} /><span>玩樂區的貓咪比較調皮，可能會抓傷你、突然衝過來或跳到你身上，甚至趁機叼走你的點心。</span></div><div><Check size={17} /><span>喝茶區的貓咪個性安靜許多，歡迎輕輕撫摸，但請不要用力拍打或抓弄牠們。</span></div><div><Check size={17} /><span>點了貓咪交響樂時，附近的貓咪可能會忍不住跟著合唱，純屬牠們的社交禮儀。</span></div><div><Check size={17} /><span>醫護站沒有固定駐點的貓咪，偶爾會有貓咪路過，順道安撫一下受傷的客人。</span></div></div></div><div className="rules-panel rules-notice"><h3>客人需遵守事項</h3><div className="rules-list"><div><Check size={17} /><span>請以角色身分進行 IC 互動，如需討論現實話題或跳出劇情，請以 OOC 標示區隔。</span></div><div><Check size={17} /><span>禁止未經同意的強制性 RP（Godmod）與代替他人角色行動（Metagaming）。</span></div><div><Check size={17} /><span>請尊重每位客人與店員的 RP 步調，不隨意打斷或介入他人正在進行的互動。</span></div><div><Check size={17} /><span>店內謝絕涉及暴力、政治、宗教等高度敏感話題的演出。</span></div><div><Check size={17} /><span>截圖、直播或錄影前，請先取得在場所有客人的同意。</span></div><div><Check size={17} /><span>如遇任何不當言行，請立即告知在場店員協助處理。</span></div></div></div></div></section>
 
       <footer className="footer" id="visit">
         <div className="footer-top">
