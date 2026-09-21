@@ -100,4 +100,13 @@ h1,h2,h3,p { margin:0; } h1,h2 { font-family:'PingFang TC','Microsoft JhengHei',
 .rules-panel .rules-list div { align-items:flex-start; gap:14px; padding:18px 0; line-height:1.8; }.rules-panel .rules-list svg { margin-top:4px; }
 @media (min-width:801px) { .rules-panels { grid-template-columns:minmax(0,1fr) minmax(0,1fr); } }
 @media (max-width:600px) { .tag-intro-heading { align-items:flex-start; flex-direction:column; gap:10px; } }
-
+/* Clickable personality intro cards replace the separate filter button row */
+.tag-intro-heading p { margin:0; color:#665565; font-size:15px; }
+.tag-option { all:unset; box-sizing:border-box; cursor:pointer; display:block; width:100%; padding:16px; border-radius:14px; border:1px solid transparent; transition:border-color .2s ease, background-color .2s ease, transform .15s ease; }
+.tag-option:hover { border-color:var(--terracotta); transform:translateY(-1px); }
+.tag-option.active { border-color:var(--terracotta); background:#fdf1ee; }
+.tag-option strong { display:block; color:var(--terracotta); font-size:18px; margin-bottom:8px; }
+.tag-option p { color:#665565; font-size:15px; line-height:1.8; margin:0; }
+.tag-option.tag-option-all strong { color:#4b3b49; }
+@media (max-width:900px) { .tag-intro-grid { grid-template-columns:repeat(2,1fr); } }
+@media (max-width:600px) { .tag-intro-grid { grid-template-columns:1fr; } }
