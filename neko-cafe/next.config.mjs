@@ -1,11 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
+  output: 'export',
   images: {
     unoptimized: true,
   },
-}
+  basePath: process.env.NODE_ENV === 'production' ? '/你的repo名稱' : '',
+};
 
-export default nextConfig
+export default nextConfig;
