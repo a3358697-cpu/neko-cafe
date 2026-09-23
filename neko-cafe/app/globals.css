@@ -279,3 +279,82 @@ h1,h2,h3,p { margin:0; } h1,h2 { font-family:'PingFang TC','Microsoft JhengHei',
 .tag-option.active { border-color:var(--terracotta); background:#fbe6df; }
 .tag-option.tag-option-all { background:#f1e5e3; border-color:#ddc8c2; }
 .tag-option.tag-option-all:hover, .tag-option.tag-option-all.active { border-color:var(--terracotta); background:#fbe6df; }
+
+/* Clickable personality intro cards replace the separate filter button row */
+.tag-intro-heading p { margin:0; color:#665565; font-size:15px; }
+.tag-option { all:unset; box-sizing:border-box; cursor:pointer; display:block; width:100%; padding:16px; border-radius:14px; border:1px solid transparent; transition:border-color .2s ease, background-color .2s ease, transform .15s ease; }
+.tag-option:hover { border-color:var(--terracotta); transform:translateY(-1px); }
+.tag-option.active { border-color:var(--terracotta); background:#fdf1ee; }
+.tag-option strong { display:block; color:var(--terracotta); font-size:18px; margin-bottom:8px; }
+.tag-option p { color:#665565; font-size:15px; line-height:1.8; margin:0; }
+.tag-option.tag-option-all strong { color:#4b3b49; }
+@media (max-width:900px) { .tag-intro-grid { grid-template-columns:repeat(2,1fr); } }
+@media (max-width:600px) { .tag-intro-grid { grid-template-columns:1fr; } }
+ 
+/* Square staff photos instead of landscape crop */
+.cat-photo { width:100%; height:auto; aspect-ratio:1/1; object-fit:cover; border-radius:14px; display:block; margin-bottom:16px; }
+ 
+/* Clearer, more prominent footer with a big Discord button */
+.footer { flex-direction:column; align-items:stretch; gap:24px; padding:48px clamp(22px,9vw,150px); }
+.footer-top { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px; }
+.footer-headline { margin:0; color:#4b3b49; font-size:19px; font-weight:700; text-align:center; padding-top:22px; border-top:1px solid var(--line); }
+.discord-button-large { padding:16px 28px; font-size:17px; font-weight:800; box-shadow:0 12px 28px #c8798255; }
+@media (max-width:600px) { .footer-top { flex-direction:column; align-items:flex-start; } .footer-headline { text-align:left; } }
+ 
+/* Tag intro cards: visible border + tinted background so they read as separate chips */
+.tag-intro { background:#f7ede8; }
+.tag-option { background:#fffaf6; border:1px solid #e6d2c9; }
+.tag-option:hover { border-color:var(--terracotta); background:#fdf1ee; }
+.tag-option.active { border-color:var(--terracotta); background:#fbe6df; }
+.tag-option.tag-option-all { background:#f1e5e3; border-color:#ddc8c2; }
+.tag-option.tag-option-all:hover, .tag-option.tag-option-all.active { border-color:var(--terracotta); background:#fbe6df; }
+ 
+/* Smaller, inset staff photos with better balance against the text block */
+.cat-card { padding:20px; }
+.cat-card > div { padding:0; }
+.cat-photo { width:62%; max-width:220px; margin:0 auto 18px; aspect-ratio:1/1; object-fit:cover; border-radius:14px; display:block; }
+.cat-card h3 { color:var(--ink); font-weight:800; font-size:20px; }
+.cat-card p { color:#5d5360; }
+ 
+/* Prominent low-spend notice on the menu */
+.menu-lowspend { display:inline-flex; align-items:center; gap:10px; margin-top:22px; padding:12px 20px; border-radius:999px; background:#e19b86; color:#332b2e; font-weight:800; font-size:14px; }
+ 
+/* Narrower cards so the card width tracks the photo, with a taller portrait crop */
+.cat-grid { grid-template-columns:repeat(4,1fr); gap:16px; }
+@media (max-width:960px) { .cat-grid { grid-template-columns:repeat(3,1fr); } }
+@media (max-width:700px) { .cat-grid { grid-template-columns:repeat(2,1fr); } }
+@media (max-width:480px) { .cat-grid { grid-template-columns:1fr; } }
+.cat-card { padding:12px; }
+.cat-photo { width:100%; max-width:none; margin:0 0 12px; aspect-ratio:3/4; object-fit:cover; border-radius:12px; }
+.cat-card > div { padding:0 4px; }
+ 
+/* Larger, easier to read low-spend notice */
+.menu-lowspend { font-size:16px; padding:14px 22px; }
+ 
+/* Warmer, less "plain white" tag intro block */
+.tag-intro { background:linear-gradient(135deg,#fdeae6,#f6dde6); border:1px solid #f0d0d6; }
+.tag-intro-badge { background:var(--terracotta); color:#fff; }
+.tag-option { background:#fffaf9; border:1px solid #f2d7da; box-shadow:0 4px 14px rgba(200,121,130,0.10); }
+.tag-option:hover { border-color:var(--terracotta); background:#fdf1ee; }
+.tag-option.active { border-color:var(--terracotta); background:#fbe0e4; }
+.tag-option.tag-option-all { background:#f6e8ea; border-color:#eccdd3; }
+.tag-option.tag-option-all:hover, .tag-option.tag-option-all.active { border-color:var(--terracotta); background:#fbe0e4; }
+ 
+/* Menu group note (e.g. photo pickup instructions) */
+.menu-group-note { margin:0 0 10px; color:#c9bab4; font-size:13px; line-height:1.7; }
+ 
+/* Discord icon link pinned to the bottom of the menu's left column */
+.menu-header { display:flex; flex-direction:column; }
+.menu-discord-link { margin-top:auto; padding-top:34px; align-self:flex-start; display:inline-flex; align-items:center; justify-content:center; width:46px; height:46px; border-radius:50%; background:#ffffff14; border:1px solid #ffffff35; color:#f7efe6; transition:background .2s ease, color .2s ease; }
+.menu-discord-link:hover { background:var(--terracotta); border-color:var(--terracotta); color:#fff; }
+ 
+/* Circular icon avatar above each personality tag, centered like a cute badge */
+.tag-option { text-align:center; }
+.tag-option-icon { width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; box-shadow:0 8px 16px rgba(0,0,0,0.14); }
+.tag-option strong { display:block; text-align:center; }
+.tag-option p { text-align:center; }
+ 
+/* Real illustrated icon images inside the personality tag badges */
+.tag-option-icon { background:none; box-shadow:none; overflow:hidden; }
+.tag-option-icon img { width:100%; height:100%; object-fit:cover; display:block; }
+ 
