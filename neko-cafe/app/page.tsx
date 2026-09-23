@@ -4,18 +4,18 @@ import { useState } from 'react'
 import { ArrowUpRight, Cat, Check, Coffee, ConciergeBell, MessageCircle, PawPrint, Sparkles, Stethoscope, Syringe, Utensils, X } from 'lucide-react'
 
 const cats = [
-  ['01', '冬近月', '撒嬌黏人', '喜歡靠在身邊，用呼嚕交換摸摸。'],
-  ['02', '敬請期待', '撒嬌黏人', '詳細介紹即將公開，敬請期待。'],
-  ['03', '敬請期待', '搗蛋', '詳細介紹即將公開，敬請期待。'],
-  ['04', '敬請期待', '高冷', '詳細介紹即將公開，敬請期待。'],
-  ['05', '敬請期待', '高冷', '詳細介紹即將公開，敬請期待。'],
-  ['06', '敬請期待', '撒嬌黏人', '詳細介紹即將公開，敬請期待。'],
-  ['07', '敬請期待', '搗蛋', '詳細介紹即將公開，敬請期待。'],
-  ['08', '敬請期待', '貪吃', '詳細介紹即將公開，敬請期待。'],
-  ['09', '敬請期待', '傲嬌', '詳細介紹即將公開，敬請期待。'],
-  ['10', '敬請期待', '撒嬌黏人', '詳細介紹即將公開，敬請期待。'],
-  ['11', '敬請期待', '搗蛋', '詳細介紹即將公開，敬請期待。'],
-  ['12', '敬請期待', '高冷', '詳細介紹即將公開，敬請期待。'],
+  ['01', '冬近月', '撒嬌', '喜歡靠在身邊，用呼嚕交換摸摸。'],
+  ['02', '敬請期待', '高冷', '詳細介紹即將公開，敬請期待。'],
+  ['03', '敬請期待', '調皮', '詳細介紹即將公開，敬請期待。'],
+  ['04', '敬請期待', '貪吃', '詳細介紹即將公開，敬請期待。'],
+  ['05', '敬請期待', '療癒', '詳細介紹即將公開，敬請期待。'],
+  ['06', '敬請期待', '慵懶', '詳細介紹即將公開，敬請期待。'],
+  ['07', '敬請期待', '好奇', '詳細介紹即將公開，敬請期待。'],
+  ['08', '敬請期待', '傲嬌', '詳細介紹即將公開，敬請期待。'],
+  ['09', '敬請期待', '健談', '詳細介紹即將公開，敬請期待。'],
+  ['10', '敬請期待', '撒嬌', '詳細介紹即將公開，敬請期待。'],
+  ['11', '敬請期待', '調皮', '詳細介紹即將公開，敬請期待。'],
+  ['12', '敬請期待', '貪吃', '詳細介紹即將公開，敬請期待。'],
 ]
 
 const menuGroups = [
@@ -27,12 +27,28 @@ const menuGroups = [
 
 const personalityDetails = [
   { tag: '全部', desc: '查看店內全部 12 隻貓咪，讓緣分自己決定。', icon: '/tag-icons/tag-quanbu.png' },
-  { tag: '撒嬌黏人', desc: '喜歡窩在你手邊，摸久了會發出呼嚕聲，多待在喝茶區。', icon: '/tag-icons/tag-sajiao.png' },
-  { tag: '傲嬌', desc: '嘴上嫌你煩，尾巴卻誠實地繞著你的手，偶爾會輕輕咬一口。', icon: '/tag-icons/tag-aojiao.png' },
+  { tag: '撒嬌', desc: '喜歡窩在你手邊，摸久了會發出呼嚕聲，是最容易黏上你的類型。', icon: '/tag-icons/tag-sajiao.png' },
   { tag: '高冷', desc: '不太主動，但願意讓你靜靜坐在旁邊，是需要耐心的類型。', icon: '/tag-icons/tag-gaoleng.png' },
+  { tag: '調皮', desc: '偶爾會抓一下、咬一下純屬玩鬧，互動最有隨機感的一群。', icon: '/tag-icons/tag-tiaopi.png' },
   { tag: '貪吃', desc: '看到貓條就衝過來，是最容易被貓用品吸引的類型。', icon: '/tag-icons/tag-tanchi.png' },
-  { tag: '搗蛋', desc: '偶爾會抓一下、咬一下純屬玩鬧，多待在玩樂區，互動最有隨機感。', icon: '/tag-icons/tag-tiaopi.png' },
+  { tag: '療癒', desc: '安靜地陪在你身邊，光是存在就很有治癒感。', icon: '/tag-icons/tag-liaoyu.png' },
+  { tag: '慵懶', desc: '大部分時間都在打盹，偶爾抬頭看你一眼又睡著了。', icon: '/tag-icons/tag-yonglan.png' },
+  { tag: '好奇', desc: '對任何新奇的東西都充滿興趣，可能會一直盯著你的隨身物品。', icon: '/tag-icons/tag-haoqi.png' },
+  { tag: '傲嬌', desc: '嘴上嫌你煩，尾巴卻誠實地繞著你的手，偶爾會輕輕咬一口。', icon: '/tag-icons/tag-aojiao.png' },
+  { tag: '健談', desc: '很愛用叫聲跟你「聊天」，彷彿在回應你說的每一句話。', icon: '/tag-icons/tag-jiantan.png' },
 ]
+
+const personalityTagClass = {
+  撒嬌: 'cling',
+  高冷: 'cool',
+  調皮: 'play',
+  貪吃: 'food',
+  療癒: 'heal',
+  慵懶: 'lazy',
+  好奇: 'curious',
+  傲嬌: 'cool',
+  健談: 'chatty',
+}
 
 export default function Page() {
   const [activeTag, setActiveTag] = useState('全部')
@@ -65,7 +81,7 @@ export default function Page() {
         <div className="room-grid" id="rooms"><article className="room-card room-counter"><span className="room-number">01</span><div className="room-icon"><ConciergeBell size={22} /></div><h3>櫃台</h3><p>報到、入場與今日菜單，從這裡開始你的貓咪邂逅。</p><small>想加購道具或周邊，也是來這裡找我們就對了。</small></article><article className="room-card room-play"><span className="room-number">02</span><div className="room-icon"><PawPrint size={22} /></div><h3>玩樂區</h3><p>活潑貓咪的聚集地。互動感強烈，撲、抓、追逐都可能發生。</p><small>這裡玩得比較野，踏進來前先做好心理準備喔。</small></article><article className="room-card room-tea"><span className="room-number">03</span><div className="room-icon"><Coffee size={22} /></div><h3>喝茶區</h3><p>性格溫和、不會主動攻擊的貓咪所在。安靜喝茶、聊天，或單純被療癒。</p><small>放心坐下吧，這裡的貓咪只想蹭蹭你、討摸摸。</small></article><article className="room-card room-med"><span className="room-number">04</span><div className="room-icon"><Stethoscope size={22} /></div><h3>醫護站</h3><p>為客人處理貓咪互動造成的小傷口，也提供貓咪的日常健康關照。</p><small>手上有被抓咬的痕跡嗎？來這裡讓我們幫你包紮一下。</small></article></div>
       </section>
 
-      <section className="cats-section section" id="cats"><div className="section-heading"><div><div className="section-label">02 / THE CATS</div><h2>今天，誰會坐在<br /><em>你的身邊？</em></h2></div><p>店內共有 12 隻貓咪。<br />沒有指名服務，一切交給命運與貓咪心情。</p></div><div className="tag-intro"><div className="tag-intro-heading"><span className="tag-intro-badge">標籤介紹</span><p>點選性格，篩選今晚可能坐在你身邊的貓咪。</p></div><div className="tag-intro-grid" role="group" aria-label="依性格篩選貓咪">{personalityDetails.map(({ tag, desc, icon }) => <button type="button" className={`tag-option${tag === '全部' ? ' tag-option-all' : ''}${activeTag === tag ? ' active' : ''}`} onClick={() => setActiveTag(tag)} key={tag}><span className="tag-option-icon"><img src={icon} alt={`${tag}性格圖示`} /></span><strong>{tag}</strong><p>{desc}</p></button>)}</div></div><div className="cat-grid">{visibleCats.map(([number, name, personality, desc]) => <button type="button" className="cat-card" key={number} onClick={() => setSelectedCat([number, name, personality, desc])}><img src="/cat-wintermoon.png" alt={`${name}的照片`} className="cat-photo" /><div>{name !== '敬請期待' && <span className={`tag tag-${personality === '搗蛋' ? 'play' : personality === '貪吃' ? 'food' : personality === '高冷' || personality === '傲嬌' ? 'cool' : 'cling'}`}>{personality}</span>}<h3>{name}</h3><p>{desc}</p></div></button>)}</div></section>
+      <section className="cats-section section" id="cats"><div className="section-heading"><div><div className="section-label">02 / THE CATS</div><h2>今天，誰會坐在<br /><em>你的身邊？</em></h2></div><p>店內共有 12 隻貓咪。<br />沒有指名服務，一切交給命運與貓咪心情。</p></div><div className="tag-intro"><div className="tag-intro-heading"><span className="tag-intro-badge">標籤介紹</span><p>點選性格，篩選今晚可能坐在你身邊的貓咪。</p></div><div className="tag-intro-grid" role="group" aria-label="依性格篩選貓咪">{personalityDetails.map(({ tag, desc, icon }) => <button type="button" className={`tag-option${tag === '全部' ? ' tag-option-all' : ''}${activeTag === tag ? ' active' : ''}`} onClick={() => setActiveTag(tag)} key={tag}><span className="tag-option-icon"><img src={icon} alt={`${tag}性格圖示`} /></span><strong>{tag}</strong><p>{desc}</p></button>)}</div></div><div className="cat-grid">{visibleCats.map(([number, name, personality, desc]) => <button type="button" className="cat-card" key={number} onClick={() => setSelectedCat([number, name, personality, desc])}><img src="/cat-wintermoon.png" alt={`${name}的照片`} className="cat-photo" /><div>{name !== '敬請期待' && <span className={`tag tag-${personalityTagClass[personality] || 'cling'}`}>{personality}</span>}<h3>{name}</h3><p>{desc}</p></div></button>)}</div></section>
 
       <section className="menu-section section" id="menu"><div className="menu-header"><div className="section-label light-label">03 / TODAY'S OFFERINGS</div><h2>菜單與<br /><em>消費項目</em></h2><p>所有服務項目請至櫃台詢問與購買。內容與供應狀況以現場公告為準。</p><div className="menu-lowspend"><ConciergeBell size={18} /> 低消：每人至少點取一份「本日套餐」</div><a className="menu-discord-link" href="https://discord.gg/u3mV7mMDXP" target="_blank" rel="noreferrer" aria-label="加入 Discord"><MessageCircle size={20} /></a></div><div className="menu-list">{menuGroups.map(({ title, icon: Icon, items, note }) => <div className="menu-group" key={title}><div className="menu-group-title"><div className="menu-icon"><Icon size={19} /></div><h3>{title}</h3></div>{note && <p className="menu-group-note">{note}</p>}{items.map(([itemTitle, desc, price]) => <div className="menu-item" key={itemTitle}><div className="menu-name"><h3>{itemTitle}</h3>{desc && <p>{desc.split('｜').map((line, index) => <span className={index === 1 ? 'menu-note' : ''} key={line}>{line}</span>)}</p>}</div><strong>{price}</strong></div>)}</div>)}</div></section>
 
@@ -78,7 +94,7 @@ export default function Page() {
         </div>
         <p className="footer-headline">營業時間、地點與最新公告，請見 Discord 公告。</p>
       </footer>
-      {selectedCat && <div className="cat-modal-backdrop" role="presentation" onClick={() => setSelectedCat(null)}><article className="cat-modal" role="dialog" aria-modal="true" aria-label={`${selectedCat[1]}詳細介紹`} onClick={(event) => event.stopPropagation()}><button type="button" className="modal-close" onClick={() => setSelectedCat(null)} aria-label="關閉介紹"><X size={20} /></button><img src="/cat-wintermoon.png" alt={`${selectedCat[1]}的大頭照`} /><div><h2>{selectedCat[1]}</h2><span className="tag tag-cling">{selectedCat[2]}</span><p><strong>個性：</strong>{selectedCat[3]}</p><p><strong>喜好：</strong>喜歡溫柔的互動、窗邊的月光與剛好的距離。</p><p><strong>一句話：</strong>今天也請讓牠決定相遇的方式。</p></div></article></div>}
+      {selectedCat && <div className="cat-modal-backdrop" role="presentation" onClick={() => setSelectedCat(null)}><article className="cat-modal" role="dialog" aria-modal="true" aria-label={`${selectedCat[1]}詳細介紹`} onClick={(event) => event.stopPropagation()}><button type="button" className="modal-close" onClick={() => setSelectedCat(null)} aria-label="關閉介紹"><X size={20} /></button><img src="/cat-wintermoon.png" alt={`${selectedCat[1]}的大頭照`} /><div><h2>{selectedCat[1]}</h2><span className={`tag tag-${personalityTagClass[selectedCat[2]] || 'cling'}`}>{selectedCat[2]}</span><p><strong>個性：</strong>{selectedCat[3]}</p><p><strong>喜好：</strong>喜歡溫柔的互動、窗邊的月光與剛好的距離。</p><p><strong>一句話：</strong>今天也請讓牠決定相遇的方式。</p></div></article></div>}
     </main>
   )
 }
