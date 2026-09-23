@@ -26,16 +26,16 @@ const menuGroups = [
 ]
 
 const personalityDetails = [
-  { tag: '全部', desc: '查看店內全部 12 隻貓咪，讓緣分自己決定。', icon: '/tag-icons/tag-quanbu.png' },
-  { tag: '撒嬌', desc: '喜歡窩在你手邊，摸久了會發出呼嚕聲，是最容易黏上你的類型。', icon: '/tag-icons/tag-sajiao.png' },
-  { tag: '高冷', desc: '不太主動，但願意讓你靜靜坐在旁邊，是需要耐心的類型。', icon: '/tag-icons/tag-gaoleng.png' },
-  { tag: '調皮', desc: '偶爾會抓一下、咬一下純屬玩鬧，互動最有隨機感的一群。', icon: '/tag-icons/tag-tiaopi.png' },
-  { tag: '貪吃', desc: '看到貓條就衝過來，是最容易被貓用品吸引的類型。', icon: '/tag-icons/tag-tanchi.png' },
-  { tag: '療癒', desc: '安靜地陪在你身邊，光是存在就很有治癒感。', icon: '/tag-icons/tag-liaoyu.png' },
-  { tag: '慵懶', desc: '大部分時間都在打盹，偶爾抬頭看你一眼又睡著了。', icon: '/tag-icons/tag-yonglan.png' },
-  { tag: '好奇', desc: '對任何新奇的東西都充滿興趣，可能會一直盯著你的隨身物品。', icon: '/tag-icons/tag-haoqi.png' },
-  { tag: '傲嬌', desc: '嘴上嫌你煩，尾巴卻誠實地繞著你的手，偶爾會輕輕咬一口。', icon: '/tag-icons/tag-aojiao.png' },
-  { tag: '健談', desc: '很愛用叫聲跟你「聊天」，彷彿在回應你說的每一句話。', icon: '/tag-icons/tag-jiantan.png' },
+  { tag: '全部', desc: '查看店內全部 12 隻貓咪，讓緣分自己決定。', icon: '/tag-quanbu.png' },
+  { tag: '撒嬌', desc: '喜歡窩在你手邊，摸久了會發出呼嚕聲，是最容易黏上你的類型。', icon: '/tag-sajiao.png' },
+  { tag: '高冷', desc: '不太主動，但願意讓你靜靜坐在旁邊，是需要耐心的類型。', icon: '/tag-gaoleng.png' },
+  { tag: '調皮', desc: '偶爾會抓一下、咬一下純屬玩鬧，互動最有隨機感的一群。', icon: '/tag-tiaopi.png' },
+  { tag: '貪吃', desc: '看到貓條就衝過來，是最容易被貓用品吸引的類型。', icon: '/tag-tanchi.png' },
+  { tag: '療癒', desc: '安靜地陪在你身邊，光是存在就很有治癒感。', icon: '/tag-liaoyu.png' },
+  { tag: '慵懶', desc: '大部分時間都在打盹，偶爾抬頭看你一眼又睡著了。', icon: '/tag-yonglan.png' },
+  { tag: '好奇', desc: '對任何新奇的東西都充滿興趣，可能會一直盯著你的隨身物品。', icon: '/tag-haoqi.png' },
+  { tag: '傲嬌', desc: '嘴上嫌你煩，尾巴卻誠實地繞著你的手，偶爾會輕輕咬一口。', icon: '/tag-aojiao.png' },
+  { tag: '健談', desc: '很愛用叫聲跟你「聊天」，彷彿在回應你說的每一句話。', icon: '/tag-jiantan.png' },
 ]
 
 const personalityTagClass = {
