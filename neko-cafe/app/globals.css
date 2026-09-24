@@ -1,13 +1,13 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
- 
+
 /* Use locally available system fonts so Traditional Chinese stays readable in preview. */
 body, button { font-family: sans-serif; }
 h1, h2, h3 { font-family: serif; }
- 
+
 @custom-variant dark (&:is(.dark *));
- 
+
 :root { --ink:#332c38; --muted:#766b78; --paper:#f3eaf0; --cream:#fff7f3; --terracotta:#c87982; --sage:#93ad9d; --line:#ddcbd3; --radius:1.1rem; }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; }
@@ -50,7 +50,7 @@ h1,h2,h3,p { margin:0; } h1,h2 { font-family:'PingFang TC','Microsoft JhengHei',
 .rules-list { display:grid; grid-template-columns:1fr 1fr; column-gap:34px; }.rules-list div { color:#514552; border-bottom-color:#b99ea8; font-size:16px; line-height:1.7; }
 @media (max-width:800px) { .rules-list { grid-template-columns:1fr; } }
 @media (max-width:600px) { .cat-modal { grid-template-columns:1fr; }.cat-modal > img { width:100%; height:230px; }.cat-modal h2 { font-size:34px; } }
- 
+
 /* Grouped menu, room notes, and expanded cat details */
 .room-card p { font-weight:700; }
 .room-card small { display:block; margin-top:18px; padding:12px 14px; border:1px solid #c9a9a0; border-left:4px solid var(--terracotta); border-radius:10px; background:#d8b5b0; color:#463b49; font-size:14px; line-height:1.7; font-weight:700; }
@@ -87,7 +87,7 @@ h1,h2,h3,p { margin:0; } h1,h2 { font-family:'PingFang TC','Microsoft JhengHei',
 .cat-modal > div > .tag { margin-bottom:16px; }
 @media (max-width:900px) { .tag-intro-grid { grid-template-columns:repeat(2,1fr); } }
 @media (max-width:600px) { .tag-intro-grid { grid-template-columns:1fr; }.cat-modal { grid-template-columns:1fr; padding:24px; }.cat-modal > img { width:100%; height:260px; } }
- 
+
 /* Readable room notes, tag badge, menu line breaks, and spacious rules */
 .room-card small { background:#fffaf5; border:0; border-left:4px solid var(--terracotta); color:#3f3540; box-shadow:0 3px 12px #593f3518; }
 .room-counter small { border-left-color:#b87468; }.room-play small { border-left-color:#708f72; }.room-tea small { border-left-color:#c28d58; }.room-med small { border-left-color:#a96f83; }
@@ -99,13 +99,13 @@ h1,h2,h3,p { margin:0; } h1,h2 { font-family:'PingFang TC','Microsoft JhengHei',
 .rules-panel .rules-list div { align-items:flex-start; gap:14px; padding:18px 0; line-height:1.8; }.rules-panel .rules-list svg { margin-top:4px; }
 @media (min-width:801px) { .rules-panels { grid-template-columns:minmax(0,1fr) minmax(0,1fr); } }
 @media (max-width:600px) { .tag-intro-heading { align-items:flex-start; flex-direction:column; gap:10px; } }
- 
+
 /* New personality badge colors for the expanded 9-tag system */
 .tag-heal { background:#2f4a3f; color:#b7d9c5; }
 .tag-lazy { background:#3a3f52; color:#c2c8e0; }
 .tag-curious { background:#552f3d; color:#f0b9c9; }
 .tag-chatty { background:#3d3252; color:#cdb8e8; }
- 
+
 /* Tag intro cards: visible border + tinted background so they read as separate chips */
 .tag-intro { background:linear-gradient(135deg,#fdeae6,#f6dde6); border:1px solid #f0d0d6; }
 .tag-intro-badge { background:var(--terracotta); color:#fff; }
@@ -123,7 +123,7 @@ h1,h2,h3,p { margin:0; } h1,h2 { font-family:'PingFang TC','Microsoft JhengHei',
 .tag-intro-grid { grid-template-columns:repeat(5,1fr); }
 @media (max-width:1100px) { .tag-intro-grid { grid-template-columns:repeat(3,1fr); } }
 @media (max-width:600px) { .tag-intro-grid { grid-template-columns:repeat(2,1fr); } }
- 
+
 /* Square, inset staff photos in a narrower 4-across grid */
 .cat-grid { grid-template-columns:repeat(4,1fr); gap:16px; }
 @media (max-width:960px) { .cat-grid { grid-template-columns:repeat(3,1fr); } }
@@ -134,18 +134,21 @@ h1,h2,h3,p { margin:0; } h1,h2 { font-family:'PingFang TC','Microsoft JhengHei',
 .cat-photo { width:100%; max-width:none; margin:0 0 12px; aspect-ratio:3/4; object-fit:cover; border-radius:12px; }
 .cat-card h3 { color:var(--ink); font-weight:800; font-size:20px; }
 .cat-card p { color:#5d5360; }
- 
+
 /* Menu group note (e.g. photo pickup instructions) */
 .menu-group-note { margin:0 0 10px; color:#c9bab4; font-size:13px; line-height:1.7; }
- 
+
 /* Discord icon link in the menu's left column, normal flow */
 .menu-header { display:block; }
 .menu-discord-link { margin-top:24px; display:inline-flex; align-items:center; justify-content:center; width:46px; height:46px; border-radius:50%; background:#ffffff14; border:1px solid #ffffff35; color:#f7efe6; transition:background .2s ease, color .2s ease; }
 .menu-discord-link:hover { background:var(--terracotta); border-color:var(--terracotta); color:#fff; }
- 
+
 /* Clearer, more prominent footer with a big Discord button */
 .footer { flex-direction:column; align-items:stretch; gap:24px; padding:48px clamp(22px,9vw,150px); }
 .footer-top { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px; }
 .footer-headline { margin:0; color:#4b3b49; font-size:19px; font-weight:700; text-align:center; padding-top:22px; border-top:1px solid var(--line); }
 .discord-button-large { padding:16px 28px; font-size:17px; font-weight:800; box-shadow:0 12px 28px #c8798255; }
 @media (max-width:600px) { .footer-top { flex-direction:column; align-items:flex-start; } .footer-headline { text-align:left; } }
+
+/* Entry-flow notice: the day's set is purchased outside before entering */
+.menu-entry-note { display:inline-flex; align-items:center; gap:10px; margin-top:22px; padding:12px 20px; border-radius:999px; background:#e19b86; color:#332b2e; font-weight:800; font-size:15px; }

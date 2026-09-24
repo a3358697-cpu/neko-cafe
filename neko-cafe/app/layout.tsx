@@ -3,8 +3,8 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: '月下喵舍｜FF14 Cat RP Lounge',
-  description: '讓貓咪選擇你。一間沒有指名服務的 FF14 貓咪 RP 店。',
+  title: '貓尾草｜FF14 Cat RP Lounge',
+  description: '貓尾草——一間不需要角色扮演、只有貓魅族店員的貓咪互動空間。讓貓咪選擇你。',
   generator: 'v0.app',
   icons: {
     icon: [
