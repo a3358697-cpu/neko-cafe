@@ -173,3 +173,17 @@ h1,h2,h3,p { margin:0; } h1,h2 { font-family:'PingFang TC','Microsoft JhengHei',
 /* Menu Discord link as a proper labeled pill button, not a bare floating icon */
 .menu-discord-link { display:inline-flex; align-items:center; gap:10px; margin-top:24px; padding:12px 20px; border-radius:999px; background:#ffffff14; border:1px solid #ffffff35; color:#f7efe6; font-size:14px; font-weight:700; transition:background .2s ease, color .2s ease, border-color .2s ease; }
 .menu-discord-link:hover { background:var(--terracotta); border-color:var(--terracotta); color:#fff; }
+
+/* Multiple personality tags shown side by side on a card or in the modal */
+.cat-tag-row { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px; }
+.cat-modal .cat-tag-row { margin-bottom:16px; }
+
+/* Stronger contrast between the tag-intro container and each tag card */
+.tag-intro { background:linear-gradient(135deg,#fdf6f3,#f9ede9); border-color:#ecd8d4; }
+.tag-option { background:#f8d9d3; border-color:#e9b9b0; }
+.tag-option:hover { background:#f3c7bd; border-color:var(--terracotta); }
+.tag-option.active { background:#eeb7ab; border-color:var(--terracotta); }
+.tag-option.tag-option-all { background:#efd9d2; border-color:#dcb8ae; }
+.tag-option.tag-option-all:hover, .tag-option.tag-option-all.active { background:#eeb7ab; border-color:var(--terracotta); }
+.tag-option strong { color:#8a4a52; }
+.tag-option p { color:#6b4a4a; }
