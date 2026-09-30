@@ -187,3 +187,51 @@ h1,h2,h3,p { margin:0; } h1,h2 { font-family:'PingFang TC','Microsoft JhengHei',
 .tag-option.tag-option-all:hover, .tag-option.tag-option-all.active { background:#eeb7ab; border-color:var(--terracotta); }
 .tag-option strong { color:#8a4a52; }
 .tag-option p { color:#6b4a4a; }
+
+/* ===== Typography & color pass (round 2) ===== */
+
+/* Softer, lighter pastel personality tag pills instead of dark saturated ones */
+.tag-cling { background:#fce4e4; color:#c15d6c; }
+.tag-play { background:#e3f0e3; color:#4f8a5b; }
+.tag-food { background:#fbeacb; color:#b8843a; }
+.tag-cool { background:#e2e8f0; color:#5b6b8c; }
+.tag-heal { background:#dcf0e6; color:#3f8f6b; }
+.tag-lazy { background:#e6e4f5; color:#6a5fa0; }
+.tag-curious { background:#fbe2ea; color:#b8507a; }
+.tag-chatty { background:#ece0f7; color:#7a52a8; }
+.tag { font-weight:700; }
+
+/* Tag-intro cards: white cards with a colored top accent, clearly separated from the cream container */
+.tag-intro { background:#fff7f3; border:1px solid var(--line); }
+.tag-option { background:#ffffff; border:1px solid var(--line); border-top:4px solid var(--terracotta); box-shadow:0 3px 10px rgba(0,0,0,0.05); }
+.tag-option:hover { background:#fdf1ee; border-color:var(--line); border-top-color:var(--terracotta); }
+.tag-option.active { background:#fbe6df; border-color:var(--terracotta); border-top-color:var(--terracotta); }
+.tag-option.tag-option-all { background:#fbf5f2; border-top-color:#8a7b86; }
+.tag-option.tag-option-all:hover, .tag-option.tag-option-all.active { background:#f3ece9; border-top-color:var(--terracotta); }
+.tag-option strong { color:#3d2e3a; }
+.tag-option p { color:#5c4f58; font-size:16px; }
+
+/* Decorative emphasis for flourish text */
+.intro-copy p em, .section-heading > p em { font-style:italic; color:var(--terracotta); font-weight:600; }
+
+/* Cat profile modal: larger, easier-to-read text */
+.cat-modal p { font-size:17px; line-height:1.85; color:#4a3f4d; }
+.cat-modal p strong { color:#3d2e3a; }
+.cat-quote em { font-style:italic; }
+
+/* Cat card description text, slightly larger and darker */
+.cat-card p { font-size:16px; color:#4a3f4d; }
+.cat-card h3 { font-size:21px; }
+
+/* Zone card body copy, slightly larger */
+.room-card p { font-size:16px; }
+
+/* Rules list text, darker for contrast against the light panels */
+.rules-panel .rules-list div { color:#3d2e3a; }
+
+/* Menu item description text on the dark menu section, brighter for contrast */
+.menu-name p { color:#e6d3ca; font-size:15px; }
+.menu-name p .menu-note { color:#c9b3a8; }
+
+/* Section intro copy, darker and slightly larger for readability */
+.intro-copy p, .section-heading > p, .rules-copy > p { font-size:17px; color:#3d2e3a; }
