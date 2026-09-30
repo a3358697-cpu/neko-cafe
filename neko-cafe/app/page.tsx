@@ -1,106 +1,50 @@
 'use client'
 
-import { useState } from 'react'
-import { ArrowUpRight, Camera, Cat, Check, Coffee, ConciergeBell, PawPrint, Sparkles, Stethoscope, Syringe, Utensils, X } from 'lucide-react'
+import { useMemo, useState } from 'react'
+import { Camera, Cat, Clock3, Heart, MapPin, PawPrint, ShieldPlus, Sparkles, X } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
-const DiscordIcon = ({ size = 20 }: { size?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.522 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.956 2.419-2.1568 2.419zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.419-2.1568 2.419z" />
-  </svg>
-)
+const discordUrl = 'https://discord.gg/u3mV7mMDXP'
+const discordIcon = 'https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/discord/default.svg'
 
+const traits = [
+  ['全部', '查看店內所有貓咪，讓緣分自己決定。', 'bg-[#c9b8d5]'],
+  ['撒嬌', '喜歡窩在你身邊，摸久了會發出呼嚕聲，是最容易黏上你的類型。', 'bg-[#d8a8b7]'],
+  ['高冷', '不太主動，但願意讓你靜靜坐在旁邊，是需要耐心的類型。', 'bg-[#9caeb8]'],
+  ['調皮', '偶爾會抓一下、咬一下純屬玩鬧，互動最有隨機感的類型。', 'bg-[#a9c3a0]'],
+  ['貪吃', '看到小魚乾就衝過來，是最容易被食物吸引的類型。', 'bg-[#cdb389]'],
+  ['療癒', '擁有治療傷口的能力，是在醫護站內的小天使貓咪。', 'bg-[#9fc4bb]'],
+  ['慵懶', '大部分時間都在打瞌睡，偶爾抬頭看你一眼又睡著了。', 'bg-[#b8a9c6]'],
+  ['好奇', '對任何新奇的東西都充滿興趣，可能會一直盯著你的隨身物品。', 'bg-[#9ebbc6]'],
+  ['傲嬌', '嘴上嫌你煩，尾巴卻誠實地繞著你的手，偶爾會輕咬一口。', 'bg-[#c99fb8]'],
+  ['健談', '很愛用叫聲跟你聊天，彷彿在回應你說的每一句話。', 'bg-[#c5a69a]'],
+]
 const cats = [
-  { id: '01', name: '冬近月', tags: ['撒嬌'], desc: '喜歡靠在身邊，用呼嚕交換摸摸。', likes: null, bio: null, quote: null },
-  { id: '02', name: '札伊', tags: ['好奇', '撒嬌', '健談', '調皮'], desc: '曾是沙漠神官，如今最愛拍照與收集有趣的故事。', likes: '拍照、新奇的事物、故事', bio: '是古老的沙漠神官，因為與某個貓魅族相遇後，獲得了新的軀體得以活在現世。為了某個約定，所以對新事物很感興趣，也喜歡拍照留念。', quote: '嗯？你好奇我的故事嗎？那...你也將你的故事說給我聽吧～或者讓我拍張照！' },
-  { id: '03', name: '敬請期待', tags: ['調皮'], desc: '詳細介紹即將公開，敬請期待。', likes: null, bio: null, quote: null },
-  { id: '04', name: '敬請期待', tags: ['貪吃'], desc: '詳細介紹即將公開，敬請期待。', likes: null, bio: null, quote: null },
-  { id: '05', name: '敬請期待', tags: ['療癒'], desc: '詳細介紹即將公開，敬請期待。', likes: null, bio: null, quote: null },
-  { id: '06', name: '敬請期待', tags: ['慵懶'], desc: '詳細介紹即將公開，敬請期待。', likes: null, bio: null, quote: null },
-  { id: '07', name: '敬請期待', tags: ['好奇'], desc: '詳細介紹即將公開，敬請期待。', likes: null, bio: null, quote: null },
-  { id: '08', name: '敬請期待', tags: ['傲嬌'], desc: '詳細介紹即將公開，敬請期待。', likes: null, bio: null, quote: null },
-  { id: '09', name: '敬請期待', tags: ['健談'], desc: '詳細介紹即將公開，敬請期待。', likes: null, bio: null, quote: null },
-  { id: '10', name: '敬請期待', tags: ['撒嬌'], desc: '詳細介紹即將公開，敬請期待。', likes: null, bio: null, quote: null },
-  { id: '11', name: '敬請期待', tags: ['調皮'], desc: '詳細介紹即將公開，敬請期待。', likes: null, bio: null, quote: null },
-  { id: '12', name: '敬請期待', tags: ['貪吃'], desc: '詳細介紹即將公開，敬請期待。', likes: null, bio: null, quote: null },
+  { name: '札伊', role: '攝影獅', traits: ['好奇', '撒嬌', '健談', '調皮'], intro: '曾是沙漠神官，如今最愛拍照與收集有趣的故事。', detail: '是古老的沙漠神官，因為與某個貓魅族相遇後，獲得了新的軀體得以活在現世。\n\n為了某個約定，所以對新事物很感興趣，也喜歡拍照留念。', likes: '拍照、新奇的事物、故事', quote: '嗯？你好奇我的故事嗎？那...你也將你的故事說給我聽吧～或者讓我拍張照！' },
+  { name: '露露', role: '店喵', traits: ['撒嬌', '療癒'], intro: '總是在窗邊迎接客人的溫柔小太陽。' }, { name: '墨爾', role: '喵衛', traits: ['高冷', '慵懶'], intro: '看似冷淡，其實會默默守在你身邊。' }, { name: '可可', role: '接待喵', traits: ['貪吃', '健談'], intro: '記得每位客人的喜好，也記得小魚乾放在哪裡。' }, { name: '斑斑', role: '店喵', traits: ['調皮', '好奇'], intro: '任何會動的東西，都逃不過牠的爪爪。' }, { name: '夜羽', role: '貓店長', traits: ['高冷', '傲嬌'], intro: '店裡真正的話事者，尾巴比嘴巴誠實。' }, { name: '奶糖', role: '店喵', traits: ['撒嬌', '慵懶'], intro: '以最舒服的姿勢，佔據每一張空椅子。' }, { name: '咕咕', role: '喵衛', traits: ['療癒', '健談'], intro: '輕聲喵叫，就能讓緊張的心情慢慢放鬆。' }, { name: '栗子', role: '店喵', traits: ['貪吃', '調皮'], intro: '為了一口點心，願意表演任何新花樣。' }, { name: '星塵', role: '攝影獅', traits: ['好奇', '高冷'], intro: '喜歡躲在遠處觀察，再捕捉最好的瞬間。' }, { name: '小滿', role: '接待喵', traits: ['健談', '撒嬌'], intro: '話題永遠不會中斷的熱情接待員。' }, { name: '灰灰', role: '店喵', traits: ['慵懶', '傲嬌'], intro: '如果牠願意對你眨眼，那就是今日特別優待。' },
 ]
-
+const zones = [['櫃台', '想購買項目或周邊，到櫃檯找接待喵就對了！', '', PawPrint], ['玩樂區', '', '互動感強烈，撲、抓、追逐都可能發生，這裡玩得比較野，踏進來前先做好心理準備喔。', Sparkles], ['喝茶區', '', '安靜喝茶、聊天，這裡的貓咪性格溫和，只想蹭蹭你、討摸摸。', Heart], ['醫護站', '', '手上有被抓咬的痕跡嗎？來這裡讓貓咪小護士幫你包紮一下。', ShieldPlus]]
 const menuGroups = [
-  { title: '入場方案', icon: Utensils, items: [['入場費', '已含當日套餐一份，內容每日更換。於店外向保全支付，入場後由櫃台安排。', '50,000 Gil']] },
-  { title: '貓咪互動道具', icon: Sparkles, items: [['小魚乾', '純餵食', '30,000 Gil'], ['貓咪交響樂', '貓咪會在你身旁大聲鳴叫，音量與時長依貓咪心情而定。｜購買後獲得一張貓爪信物卡，交給任一在場貓咪即可兌換', '100,000 Gil'], ['特殊服務', '每隻貓咪內容不同，請洽現場說明。｜購買後獲得一張貓爪信物卡，交給任一在場貓咪即可兌換', '300,000 Gil']] },
-  { title: '醫護站服務', icon: Syringe, items: [['傷口包紮', '被貓咪抓咬弄傷了嗎？來這裡讓我們細心包紮，順便附上一句安慰。', '100,000 Gil'], ['喵喵健康針', '主要提供給店內貓咪施打的健康針劑，如果你想讓你的貓咪朋友一起打，也一樣歡迎購買。｜購買後獲得一張貓爪信物卡，交給任一在場貓咪即可兌換', '300,000 Gil']] },
-  { title: '周邊商品・現場拍攝', icon: Camera, note: '取照方式：於 Discord 群內領取照片。若不希望照片公開於群內，請提前告知攝影的店員。', items: [['與貓咪合照', '基本一隻貓咪，每多一隻貓咪 +50,000 Gil', '300,000 Gil']] },
+  { title: '入場費', items: [['入場費', '50,000 Gil', '含當日套餐一份，於店外向喵衛支付。']] },
+  { title: '貓咪互動服務', items: [['小魚乾', '30,000 Gil', '投餵給貓咪也許能增進感情，但請勿將店內貓咪餵成卡車。'], ['貓咪交響樂', '100,000 Gil', '貓咪會在你身旁大聲嚎叫，音量與時長依貓咪心情而定。'], ['特殊服務', '300,000 Gil', '每隻貓咪內容不同，為隨機驚喜服務。']] },
+  { title: '醫護站服務', items: [['傷口包紮', '100,000 Gil', '被貓咪抓咬弄傷了嗎？來這裡讓我們細心包紮治癒您。'], ['喵喵健康針', '300,000 Gil', '主要提供給店內貓咪施打的健康針劑，如果你想讓你的貓咪朋友一起打，也一樣歡迎購買。']] },
+  { title: '周邊商品・現場拍攝', items: [['與貓咪合照', '300,000 Gil', '基礎一隻貓咪，每多加一隻貓咪 +50,000 Gil。'], ['取照方式', '', '於 Discord 群內領取照片。若不希望照片公開於群內，請告知攝影的店員。']] },
 ]
+const behaviors = ['玩樂區的貓咪比較調皮，可能會抓傷你、突然衝過來或跳到你身上，甚至趁機叼走你的點心。', '喝茶區的貓咪個性安靜許多，歡迎輕輕撫摸，但請不要用力拍打或抓弄牠們。', '點了貓咪交響樂時，附近的貓咪可能會忍不住跟著合唱，純屬牠們的社交禮儀。', '部分貓咪對小魚乾特別沒有抵抗力，可能會立刻衝過來討食，請小心手上的道具。']
+const rules = ['本店為純粹的貓咪互動空間，客人不需要進行角色扮演即可入店。', '請尊重每一隻貓咪的意願，不強迫牠們與你互動或觸摸。', '貓咪就是貓咪，請勿對牠們有任何不當、色情意圖的言行。', '請勿餵食店內提供以外的食物或異物給貓咪，維護牠們的健康。', '請勿追逐、抱起或強行帶離貓咪，讓牠們保有自由活動的空間。', '歡迎自由拍照，但請隱藏角色ID。若想與貓咪合影，請購買店內的拍攝服務。直播或錄影請先向櫃台詢問。', '如有任何不當言行，店家保留請客人離場的權利，以保障貓咪與其他客人的安全。', '營業時間、地點與最新公告，請見 Discord 公告。']
 
-const personalityDetails = [
-  { tag: '全部', desc: '查看店內全部 12 隻貓咪，讓緣分自己決定。', icon: '/tag-quanbu.png' },
-  { tag: '撒嬌', desc: '喜歡窩在你手邊，摸久了會發出呼嚕聲，是最容易黏上你的類型。', icon: '/tag-sajiao.png' },
-  { tag: '高冷', desc: '不太主動，但願意讓你靜靜坐在旁邊，是需要耐心的類型。', icon: '/tag-gaoleng.png' },
-  { tag: '調皮', desc: '偶爾會抓一下、咬一下純屬玩鬧，互動最有隨機感的一群。', icon: '/tag-tiaopi.png' },
-  { tag: '貪吃', desc: '看到貓條就衝過來，是最容易被貓用品吸引的類型。', icon: '/tag-tanchi.png' },
-  { tag: '療癒', desc: '安靜地陪在你身邊，光是存在就很有治癒感。', icon: '/tag-liaoyu.png' },
-  { tag: '慵懶', desc: '大部分時間都在打盹，偶爾抬頭看你一眼又睡著了。', icon: '/tag-yonglan.png' },
-  { tag: '好奇', desc: '對任何新奇的東西都充滿興趣，可能會一直盯著你的隨身物品。', icon: '/tag-haoqi.png' },
-  { tag: '傲嬌', desc: '嘴上嫌你煩，尾巴卻誠實地繞著你的手，偶爾會輕輕咬一口。', icon: '/tag-aojiao.png' },
-  { tag: '健談', desc: '很愛用叫聲跟你「聊天」，彷彿在回應你說的每一句話。', icon: '/tag-jiantan.png' },
-]
-
-const personalityTagClass = {
-  撒嬌: 'cling',
-  高冷: 'cool',
-  調皮: 'play',
-  貪吃: 'food',
-  療癒: 'heal',
-  慵懶: 'lazy',
-  好奇: 'curious',
-  傲嬌: 'cool',
-  健談: 'chatty',
-}
+function DiscordMark() { return <img src={discordIcon} alt="Discord" className="size-6" /> }
 
 export default function Page() {
-  const [activeTag, setActiveTag] = useState('全部')
-  const [selectedCat, setSelectedCat] = useState<(typeof cats)[number] | null>(null)
-  const visibleCats = activeTag === '全部' ? cats : cats.filter((cat) => cat.tags.includes(activeTag))
-
-  return (
-    <main className="site-shell">
-      <nav className="topbar" aria-label="主要導覽">
-        <a href="#top" className="brand"><span className="brand-mark"><Cat size={19} /></span><span>貓尾草</span></a>
-        <div className="nav-links"><a href="#about">關於店內</a><a href="#cats">貓咪名冊</a><a href="#menu">菜單與價目</a></div>
-        <a className="nav-cta" href="https://discord.gg/u3mV7mMDXP" target="_blank" rel="noreferrer">加入 Discord <ArrowUpRight size={15} /></a>
-      </nav>
-
-      <section className="hero" id="top">
-        <div className="hero-copy">
-          <p className="eyebrow"><span className="eyebrow-line" /> EORZEA · CAT RP LOUNGE</p>
-          <h1>讓貓咪<br /><em>選擇</em>你。</h1>
-          <p className="hero-desc">一間沒有指名服務的貓咪 RP 店。<br />今天遇見誰，就把時間留給誰。</p>
-          <div className="hero-actions"><a href="#menu" className="button button-dark">查看菜單與消費項目 <ArrowUpRight size={16} /></a><a href="#cats" className="text-link">認識 12 隻貓咪 <ArrowUpRight size={14} /></a></div>
-        </div>
-        <div className="hero-visual" aria-label="貓咪店內插畫區域">
-          <div className="orbit orbit-one" /><div className="orbit orbit-two" /><div className="cat-silhouette"><Cat size={182} strokeWidth={1.1} /></div>
-          <div className="float-note note-one"><span>12</span><small>隻貓咪</small></div><div className="float-note note-two"><span>RP</span><small>互動式體驗</small></div>
-          <div className="stamp">EST.<br /><strong>∞</strong><br />KITTENS</div>
-        </div>
-      </section>
-
-      <section className="intro section" id="about"><div className="section-label">01 / INSIDE THE HOUSE</div><div className="intro-grid"><div><h2>每一個角落，<br /><em>都有一種相遇。</em></h2></div><div className="intro-copy"><p>我們把店內分成四個區域，讓每種性格的貓咪，都有<em>舒服自在的舞台</em>。</p></div></div>
-        <div className="room-grid" id="rooms"><article className="room-card room-counter"><span className="room-number">01</span><div className="room-icon"><ConciergeBell size={22} /></div><h3>櫃台</h3><p>報到、入場與今日菜單，從這裡開始你的貓咪邂逅。</p><small>想加購道具或周邊，也是來這裡找我們就對了。</small></article><article className="room-card room-play"><span className="room-number">02</span><div className="room-icon"><PawPrint size={22} /></div><h3>玩樂區</h3><p>活潑貓咪的聚集地。互動感強烈，撲、抓、追逐都可能發生。</p><small>這裡玩得比較野，踏進來前先做好心理準備喔。</small></article><article className="room-card room-tea"><span className="room-number">03</span><div className="room-icon"><Coffee size={22} /></div><h3>喝茶區</h3><p>性格溫和、不會主動攻擊的貓咪所在。安靜喝茶、聊天，或單純被療癒。</p><small>放心坐下吧，這裡的貓咪只想蹭蹭你、討摸摸。</small></article><article className="room-card room-med"><span className="room-number">04</span><div className="room-icon"><Stethoscope size={22} /></div><h3>醫護站</h3><p>為客人處理貓咪互動造成的小傷口，也提供貓咪的日常健康關照。</p><small>手上有被抓咬的痕跡嗎？來這裡讓我們幫你包紮一下。</small></article></div>
-      </section>
-
-      <section className="cats-section section" id="cats"><div className="section-heading"><div><div className="section-label">02 / THE CATS</div><h2>今天，誰會坐在<br /><em>你的身邊？</em></h2></div><p>店內共有 12 隻貓咪。<br /><em>沒有指名服務，一切交給命運與貓咪心情。</em></p></div><div className="tag-intro"><div className="tag-intro-heading"><span className="tag-intro-badge">標籤介紹</span><p>點選性格，篩選今晚可能坐在你身邊的貓咪。</p></div><div className="tag-intro-grid" role="group" aria-label="依性格篩選貓咪">{personalityDetails.map(({ tag, desc, icon }) => <button type="button" className={`tag-option${tag === '全部' ? ' tag-option-all' : ''}${activeTag === tag ? ' active' : ''}`} onClick={() => setActiveTag(tag)} key={tag}><span className="tag-option-icon"><img src={icon} alt={`${tag}性格圖示`} /></span><strong>{tag}</strong><p>{desc}</p></button>)}</div></div><div className="cat-grid">{visibleCats.map((cat) => <button type="button" className="cat-card" key={cat.id} onClick={() => setSelectedCat(cat)}><img src="/cat-wintermoon.png" alt={`${cat.name}的照片`} className="cat-photo" /><div>{cat.name !== '敬請期待' && <div className="cat-tag-row">{cat.tags.map((t) => <span className={`tag tag-${personalityTagClass[t] || 'cling'}`} key={t}>{t}</span>)}</div>}<h3>{cat.name}</h3><p>{cat.desc}</p></div></button>)}</div></section>
-
-      <section className="menu-section section" id="menu"><div className="menu-header"><div className="section-label light-label">03 / TODAY'S OFFERINGS</div><h2>菜單與<br /><em>消費項目</em></h2><p>所有服務項目請至櫃台詢問與購買。內容與供應狀況以現場公告為準。</p><div className="menu-entry-note"><ConciergeBell size={18} /> 入店前請先於店外向保全支付入場費（已含當日套餐）</div><a className="menu-discord-link" href="https://discord.gg/u3mV7mMDXP" target="_blank" rel="noreferrer"><DiscordIcon size={18} /> 加入 Discord</a></div><div className="menu-list">{menuGroups.map(({ title, icon: Icon, items, note }) => <div className="menu-group" key={title}><div className="menu-group-title"><div className="menu-icon"><Icon size={19} /></div><h3>{title}</h3></div>{note && <p className="menu-group-note">{note}</p>}{items.map(([itemTitle, desc, price]) => <div className="menu-item" key={itemTitle}><div className="menu-name"><h3>{itemTitle}</h3>{desc && <p>{desc.split('｜').map((line, index) => <span className={index === 1 ? 'menu-note' : ''} key={line}>{line}</span>)}</p>}</div><strong>{price}</strong></div>)}</div>)}</div></section>
-
-      <section className="rules section"><div className="rules-copy"><div className="section-label">04 / CAT BEHAVIOR & RULES</div><h2>先讀懂貓咪，<br /><em>再開始相處。</em></h2><p>每隻貓咪都有自己的情緒與界線。請先了解可能發生的互動，再享受今晚的相遇。</p></div><div className="rules-panels"><div className="rules-panel rules-behavior"><h3>貓咪可能觸發的行為</h3><div className="rules-list"><div><Check size={17} /><span>玩樂區的貓咪比較調皮，可能會抓傷你、突然衝過來或跳到你身上，甚至趁機叼走你的點心。</span></div><div><Check size={17} /><span>喝茶區的貓咪個性安靜許多，歡迎輕輕撫摸，但請不要用力拍打或抓弄牠們。</span></div><div><Check size={17} /><span>點了貓咪交響樂時，附近的貓咪可能會忍不住跟著合唱，純屬牠們的社交禮儀。</span></div><div><Check size={17} /><span>部分貓咪對小魚乾特別沒有抵抗力，可能會立刻衝過來討食，請小心手上的道具。</span></div><div><Check size={17} /><span>醫護站沒有固定駐點的貓咪，偶爾會有貓咪路過，順道安撫一下受傷的客人。</span></div></div></div><div className="rules-panel rules-notice"><h3>客人需遵守事項</h3><div className="rules-list"><div><Check size={17} /><span>本店為純粹的貓咪互動空間，客人不需要進行角色扮演即可入店。</span></div><div><Check size={17} /><span>請尊重每一隻貓咪的意願，不強迫牠們與你互動或觸摸。</span></div><div><Check size={17} /><span>貓咪就是貓咪，請勿對牠們有任何不當、色情意圖的言行。</span></div><div><Check size={17} /><span>請勿餵食店內提供以外的食物或異物給貓咪，維護牠們的健康。</span></div><div><Check size={17} /><span>請勿追逐、抱起或強行帶離貓咪，讓牠們保有自由活動的空間。</span></div><div><Check size={17} /><span>歡迎自由拍照，但請隱藏角色ID<br />若想與貓咪合影，請購買店內的拍攝服務。直播或錄影請先向櫃台詢問。</span></div><div><Check size={17} /><span>如有任何不當言行，店家保留請客人離場的權利，以保障貓咪與其他客人的安全。</span></div></div></div></div></section>
-
-      <footer className="footer" id="visit">
-        <div className="footer-top">
-          <div className="footer-brand"><span className="brand-mark"><Cat size={19} /></span><div><strong>貓尾草</strong><small>FF14 · CAT RP LOUNGE</small></div></div>
-          <a className="discord-button discord-button-large" href="https://discord.gg/u3mV7mMDXP" target="_blank" rel="noreferrer"><DiscordIcon size={20} /> 加入 Discord</a>
-        </div>
-        <p className="footer-headline">營業時間、地點與最新公告，請見 Discord 公告。</p>
-      </footer>
-      {selectedCat && <div className="cat-modal-backdrop" role="presentation" onClick={() => setSelectedCat(null)}><article className="cat-modal" role="dialog" aria-modal="true" aria-label={`${selectedCat.name}詳細介紹`} onClick={(event) => event.stopPropagation()}><button type="button" className="modal-close" onClick={() => setSelectedCat(null)} aria-label="關閉介紹"><X size={20} /></button><img src="/cat-wintermoon.png" alt={`${selectedCat.name}的大頭照`} /><div><h2>{selectedCat.name}</h2><div className="cat-tag-row">{selectedCat.tags.map((t) => <span className={`tag tag-${personalityTagClass[t] || 'cling'}`} key={t}>{t}</span>)}</div><p><strong>個性：</strong>{selectedCat.desc}</p>{selectedCat.bio && <p><strong>貓貓介紹：</strong>{selectedCat.bio}</p>}<p><strong>喜好：</strong>{selectedCat.likes || '牠的喜好還沒公開，敬請期待。'}</p><p className="cat-quote"><strong>一句話：</strong><em>「{selectedCat.quote || '本喵想說的話，晚點再告訴你。'}」</em></p></div></article></div>}
-    </main>
-  )
+  const [activeTrait, setActiveTrait] = useState('全部'); const [selectedCat, setSelectedCat] = useState<(typeof cats)[number] | null>(null)
+  const filteredCats = useMemo(() => activeTrait === '全部' ? cats : cats.filter((cat) => cat.traits.includes(activeTrait)), [activeTrait])
+  return <main className="min-h-screen overflow-hidden bg-[#e8e1dc] text-[#403943]">
+    <header className="relative bg-[#5a4b63] text-[#f6eee8]"><div className="absolute inset-0 opacity-30 [background-image:linear-gradient(135deg,transparent_0_48%,#8e7894_49%_50%,transparent_51%)] [background-size:34px_34px]" /><nav className="relative mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-10"><a href="#top" className="flex items-center gap-3"><span className="grid size-12 place-items-center rounded-2xl bg-[#b9cbb9] text-[#5a4b63]"><Cat /></span><span className="font-serif text-3xl tracking-[0.15em]">貓尾草</span></a><div className="hidden items-center gap-8 text-lg md:flex"><a href="#zones">店內空間</a><a href="#cats">貓咪名簿</a><a href="#menu">消費項目</a><a href={discordUrl} target="_blank" rel="noreferrer" aria-label="加入 Discord" className="grid size-12 place-items-center rounded-lg bg-[#b9cbb9] text-[#403943] transition hover:bg-[#d2dfcc]"><DiscordMark /></a></div></nav><div id="top" className="relative mx-auto grid max-w-7xl gap-12 px-6 pb-24 pt-20 lg:grid-cols-[1.1fr_.9fr] lg:px-10 lg:pb-32"><div className="flex flex-col justify-center"><p className="mb-6 text-lg font-bold tracking-[0.2em] text-[#c7d6c2]">WELCOME TO NEKOWEED</p><h1 className="max-w-2xl font-serif text-6xl leading-[1.08] md:text-8xl">讓故事<br /><em className="font-normal text-[#c7d6c2]">在貓尾草展開</em></h1><p className="mt-8 max-w-xl text-xl leading-9 text-[#eadfd9]">一間讓你自在親近貓咪的 RP 店。<br />在貓尾草，和一群有自己步調的貓咪相遇。</p><div className="mt-10 flex flex-wrap gap-4"><Button asChild size="lg" className="rounded-2xl bg-[#a9c3a0] px-7 text-lg text-[#403943] hover:bg-[#bfd3b7]"><a href="#cats">認識店內貓咪</a></Button><Button asChild size="lg" className="rounded-2xl border-[#a9c3a0] bg-[#a9c3a0] px-7 text-lg text-[#403943] hover:bg-[#bfd3b7]"><a href={discordUrl} target="_blank" rel="noreferrer"><DiscordMark /> <span className="sr-only">加入 Discord</span></a></Button></div></div><div className="relative min-h-[340px] lg:min-h-[440px]"><div className="absolute right-0 top-4 size-[78%] rounded-[45%_45%_12%_12%] bg-[#aa8c9f] rotate-6" /><div className="absolute bottom-0 left-2 size-[72%] rounded-[40%_40%_16%_16%] bg-[#c2b09a]" /><div className="absolute bottom-10 right-[16%] grid size-52 place-items-center rounded-[45%] bg-[#78939a] text-[#f6eee8] shadow-2xl md:size-64"><Cat className="size-36 md:size-44" strokeWidth={1.1} /><PawPrint className="absolute right-5 top-6 size-10 rotate-12 text-[#c7d6c2]" /></div><div className="absolute bottom-4 left-0 max-w-[230px] rounded-2xl bg-[#d9c5c2] px-5 py-4 text-[#5a4b63] shadow-lg"><p className="text-sm font-bold tracking-widest"></p><p className="mt-1 font-serif text-2xl">貓尾草</p></div></div></div></header>
+    <section id="zones" className="mx-auto max-w-7xl px-6 py-24 lg:px-10"><div className="mb-12 max-w-2xl"><p className="mb-3 text-lg font-bold tracking-[0.2em] text-[#816e82]">A LITTLE TOUR</p><h2 className="font-serif text-5xl md:text-6xl">店裡的四個角落</h2></div><div className="grid gap-4 md:grid-cols-4">{zones.map(([title, subtitle, text, Icon]) => { const ZoneIcon = Icon as typeof PawPrint; return <article key={title as string} className="group rounded-[1.5rem] border border-[#c8b9bc] bg-[#ddd4d0] p-6 transition hover:-translate-y-1 hover:bg-[#d3cec8]"><div className="flex items-center gap-4"><span className="grid size-12 place-items-center rounded-xl bg-[#8e7894] text-[#f8f0e8]"><ZoneIcon /></span><h3 className="font-serif text-3xl">{title as string}</h3></div><div className="mt-5 border-t border-[#b9a9ad] pt-4"><p className="text-lg leading-8 text-[#5a4b63]">{subtitle as string}</p><p className="mt-3 text-lg leading-8 text-[#625963]">{text as string}</p></div></article>})}</div></section>
+    <section id="cats" className="border-y border-[#c6b6bd] bg-[#d8ccc9] px-6 py-24 lg:px-10"><div className="mx-auto max-w-7xl"><div className="mb-12"><p className="mb-3 flex items-center gap-3 text-lg font-bold tracking-[0.2em] text-[#816e82]"><Cat className="size-6" /> MEET THE CATS</p><h2 className="font-serif text-5xl md:text-6xl">貓咪名簿</h2></div><div className="mb-12 rounded-[1.75rem] border border-[#bcaeb9] bg-[#c9bcc5] p-6 md:p-8"><div className="mb-5 flex items-end justify-between gap-4"><div><p className="text-sm font-bold tracking-[0.18em] text-[#6e5b70]">FILTER BY PERSONALITY</p><h3 className="mt-2 font-serif text-3xl">選一個你想遇見的性格</h3></div><p className="hidden text-lg text-[#6e5b70] md:block">點選標籤，查看有相同性格的貓咪</p></div><div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">{traits.map(([name, note, color]) => <button key={name} onClick={() => setActiveTrait(name)} className={`rounded-2xl border p-4 text-left transition hover:-translate-y-0.5 ${activeTrait === name ? 'border-[#5a4b63] bg-[#5a4b63] text-[#f6eee8]' : 'border-[#b7a9b2] bg-[#e1d8d4] text-[#403943]'}`}><span className="flex items-center gap-3"><span className={`grid size-10 shrink-0 place-items-center rounded-xl ${color} text-[#403943]`}><Cat /></span><span className="text-xl font-bold">{name}</span></span><span className={`mt-3 block text-lg leading-8 ${activeTrait === name ? 'text-[#eadfd9]' : 'text-[#675d66]'}`}>{note}</span></button>)}</div></div><div className="mb-6 flex items-center justify-between gap-4"><p className="text-lg text-[#665b64]">{activeTrait === '全部' ? '全部貓咪' : `符合「${activeTrait}」的貓咪`} ・ {filteredCats.length} 位</p><p className="text-right text-base font-semibold text-[#5a4b63]">點開卡片查看詳細介紹</p></div><div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">{filteredCats.map((cat, i) => <button key={cat.name} onClick={() => setSelectedCat(cat)} className="group rounded-[1.5rem] border border-[#bbaab1] bg-[#e6dcda] overflow-hidden p-5 text-left transition hover:-translate-y-1 hover:shadow-xl"><div className={`relative grid h-40 place-items-center overflow-hidden rounded-xl ${['bg-[#78939a]', 'bg-[#aa8c9f]', 'bg-[#9bae9e]'][i % 3]}`}><Cat className="size-28 text-[#f6eee8]/80 transition group-hover:scale-110" strokeWidth={1.1} /></div><h3 className="mt-5 font-serif text-3xl">{cat.name}</h3><div className="mt-3 flex flex-wrap gap-2">{[cat.role, ...cat.traits].map((tag, tagIndex) => <span key={tag} className={`rounded-full px-3 py-1 text-sm font-semibold text-[#f6eee8] ${tagIndex === 0 ? 'bg-[#5a4b63]' : ['bg-[#8e7894]', 'bg-[#6c9290]', 'bg-[#a57d91]', 'bg-[#8c9f7a]'][tagIndex % 4]}`}>{tag}</span>)}</div><p className="mt-4 text-base leading-7 text-[#625963]">{cat.intro}</p><span className="mt-4 block text-sm font-bold text-[#816e82]"> →</span></button>)}</div></div></section>
+    <section id="menu" className="mx-auto max-w-7xl px-6 py-24 lg:px-10"><div className="mb-12"><p className="mb-3 text-lg font-bold tracking-[0.2em] text-[#816e82]">VISITORS&apos; MENU</p><h2 className="font-serif text-5xl md:text-6xl">消費項目</h2><p className="mt-5 text-xl text-[#625963]">需要購買任何項目請至櫃台找接待喵。</p></div><div className="flex flex-col gap-12">{menuGroups.map((group, i) => <article key={group.title} className="border-t-4 border-[#8e7894] pt-6"><div className="mb-6 flex items-center gap-4"><span className="grid size-12 place-items-center rounded-xl bg-[#5a4b63] text-[#c7d6c2]">{i === 0 ? <PawPrint /> : i === 1 ? <Sparkles /> : i === 2 ? <ShieldPlus /> : <Camera />}</span><h3 className="font-serif text-3xl">{group.title}</h3></div><div className="grid gap-5 md:grid-cols-2">{group.items.map(([name, price, text]) => <div key={name} className="rounded-2xl border border-[#c8b9bc] bg-[#ddd4d0] p-6"><div className="flex items-start justify-between gap-4"><p className="text-xl font-bold">{name}</p>{price && <p className="shrink-0 text-lg font-bold text-[#6e5b70]">{price}</p>}</div><p className="mt-3 text-lg leading-8 text-[#625963]">{text}</p></div>)}</div></article>)}</div></section>
+    <section className="bg-[#78939a] px-6 py-24 text-[#f6eee8] lg:px-10"><div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2"><div><p className="mb-3 text-lg font-bold tracking-[0.2em] text-[#c7d6c2]">PLEASE READ</p><h2 className="font-serif text-5xl md:text-6xl">貓咪可能觸發的行為</h2><div className="mt-8 flex flex-col gap-5">{behaviors.map((item) => <p key={item} className="border-l-2 border-[#c7d6c2] pl-5 text-lg leading-8 text-[#e5e1da]">{item}</p>)}</div></div><div className="rounded-[1.75rem] bg-[#5a4b63] p-8"><div className="flex items-center gap-4"><ShieldPlus className="text-[#c7d6c2]" /><h2 className="font-serif text-4xl">客人需遵守事項</h2></div><div className="mt-8 flex flex-col gap-5">{rules.map((item, i) => <p key={item} className="flex gap-4 text-lg leading-8 text-[#eadfd9]"><span className="font-mono text-[#c7d6c2]">0{i + 1}</span><span>{item}</span></p>)}</div></div></div></section>
+    <footer className="bg-[#354b59] px-6 py-14 text-[#f3ece8] lg:px-10"><div className="mx-auto flex max-w-7xl flex-col gap-8 md:flex-row md:items-end md:justify-between"><div><div className="flex items-center gap-3"><Cat className="text-[#c7d6c2]" /><span className="font-serif text-3xl tracking-[0.15em]">貓尾草</span></div><p className="mt-4 text-lg text-[#e2d8d2]">給每個故事一個柔軟的落腳處。</p></div><div className="flex flex-col gap-4 text-lg text-[#e2d8d2] md:items-end"><p className="flex items-center gap-2"><Clock3 /> 營業時間、地點與最新公告請見 Discord</p><a className="grid size-12 place-items-center rounded-lg bg-[#b9cbb9] text-[#403943] transition hover:bg-[#d2dfcc]" href={discordUrl} target="_blank" rel="noreferrer" aria-label="加入 Discord"><DiscordMark /></a></div></div></footer>
+    {selectedCat && <div className="fixed inset-0 z-50 grid place-items-center bg-[#403943]/80 p-4 backdrop-blur-sm" role="presentation" onClick={() => setSelectedCat(null)}><div role="dialog" aria-modal="true" aria-labelledby="cat-dialog-title" className="relative max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-[2rem] border border-[#bcaeb9] bg-[#e6dcda] shadow-2xl" onClick={(event) => event.stopPropagation()}><button aria-label="關閉介紹" onClick={() => setSelectedCat(null)} className="absolute right-4 top-4 z-10 grid size-11 place-items-center rounded-full bg-[#5a4b63] text-[#f6eee8] hover:bg-[#403943]"><X /></button><div className="grid md:grid-cols-[40%_60%]"><div className="grid min-h-72 place-items-center bg-[#78939a] text-[#f6eee8] md:min-h-[560px]"><Cat className="size-48 md:size-64" strokeWidth={1.05} /></div><div className="p-8 sm:p-10"><span className="rounded-full bg-[#5a4b63] px-4 py-2 text-base font-bold text-[#f6eee8]">{selectedCat.role}</span><h2 id="cat-dialog-title" className="mt-5 font-serif text-5xl">{selectedCat.name}</h2><div className="mt-4 flex flex-wrap gap-2">{selectedCat.traits.map((tag, i) => <span key={tag} className={`rounded-full px-3 py-1 text-sm text-[#f6eee8] ${['bg-[#8e7894]', 'bg-[#6c9290]', 'bg-[#a57d91]', 'bg-[#8c9f7a]'][i % 4]}`}>{tag}</span>)}</div><h3 className="mt-8 text-lg font-bold tracking-[0.2em] text-[#6e5b70]">貓貓介紹</h3><div className="mt-3 whitespace-pre-line text-xl leading-9 text-[#625963]">{selectedCat.detail ?? selectedCat.intro}</div>{selectedCat.likes && <><div className="mt-8 border-t border-[#c8b9bc] pt-6"><p className="text-lg font-bold tracking-widest text-[#6e5b70]">喜好</p><p className="mt-2 text-xl">{selectedCat.likes}</p></div><p className="mt-8 border-l-4 border-[#8e7894] pl-5 font-serif text-xl italic leading-9 text-[#403943]">「{selectedCat.quote}」</p></>}</div></div></div></div>}
+  </main>
 }
