@@ -37,10 +37,14 @@ const realCats: Cat[] = [
   { id: 'yuko', name: '優子', roles: ['店喵'], traits: ['撒嬌', '傲嬌', '特殊服務'], personality: '看似冷淡，一旦鬆懈時便會流露出貓科特有的黏人習性，用微妙的距離感試探、默默坐在身側，甚至低聲哼哼示好討摸摸。', detail: '因為誤觸禁忌魔法而不小心從平行時空來到這個世界，秉持既來之則安之的想法，和這個世界的另一個自己生活在一起，順便研究起了原本所在世界沒有的魔法。未來也許有機會在店內看到這個世界的另一個「她」也說不定？', service: '【來自異界的魔藥實驗】根據不同的實驗結果，產生的副作用可能會觸發他截然不同的一面……？', likes: '研究古老的魔法典籍、安靜的魔法工坊、天然草藥的香氣', quote: '在我的故鄉，像我們這種成天和魔法打交道的人……可是被稱作『魔法使』哦。' },
   { id: 'pocat', name: '破貓', roles: [], traits: ['高冷'], intro: '詳細介紹即將公開，敬請期待。', placeholder: true },
   { id: 'mihashi', name: '米哈獅', roles: ['浪喵'], traits: ['高冷'], detail: '一隻看似冷淡、其實溫柔的大貓。喜歡安靜地待在角落，不太擅長主動親近，卻會默默陪伴需要的人。某天貪睡時被打包帶走，就這樣成了店裡的一員。' },
+  { id: 'xunqi', name: '醺柒', roles: ['店喵'], traits: ['高冷', '好奇', '健談'], personality: '不喜歡吵鬧，最懂得共情孤獨與疲憊的客人，給予最無社交壓力的陪伴', detail: '原本是古老鐘塔守護者收留的野貓，在某次躍上高處的架子時，推下並摔碎了鐫刻神祕符文的瓶罐，意外的接觸了秘藏於鐘塔間，珍貴的月之精華，也讓她一併接納了人們在無助的夜晚，偷偷向月亮傾訴的心事與秘密，這份共情讓她褪去野性，收起利爪，化形成少女，成為黑夜裡最溫柔的守望者', likes: '下雨天的窗邊、輕快的音樂、無糖的熱紅茶', quote: '生活很辛苦吧？既然來了，就好好休息。我的黑夜很漫長，足夠容納你所有的疲憊喵。' },
 ]
 const totalCats = 12
+// 臨時工（職位含「浪喵」）會自動排在所有常駐店員後面，所以新增臨時工時，資料寫在 realCats 的哪個位置都可以。
+const tempRole = '浪喵'
+const orderedStaff: Cat[] = [...realCats.filter((cat) => !cat.roles.includes(tempRole)), ...realCats.filter((cat) => cat.roles.includes(tempRole))]
 const cats: Cat[] = [
-  ...realCats,
+  ...orderedStaff,
   ...Array.from({ length: totalCats - realCats.length }, (_, i): Cat => ({ id: `soon-${i + 1}`, name: '敬請期待', roles: [], traits: [], intro: '詳細介紹即將公開，敬請期待。', placeholder: true })),
 ]
 const navLinks = [['入店流程', '#visit'], ['店內空間', '#zones'], ['貓咪名簿', '#cats'], ['消費項目', '#menu'], ['入店須知', '#rules']]
